@@ -1,0 +1,120 @@
+:root {
+    --dark-blue: #011F45;
+    --light-orange: #FCBC8B;
+}
+
+.send-data {
+    padding: 3vh;
+}
+
+header .send-data .description-data {
+    background-color: var(--dark-blue);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+header span p.description-data {
+    color: white;
+    text-align: center;
+}
+
+header .send-data .submit-data {
+    background-color: var(--light-orange);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top:2px;
+}
+
+header span p.submit-data {
+    color:  black;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add-activity {
+    display: grid;
+    justify-content: right;
+    margin-right: 5vh;
+    margin-bottom: 3vh;
+}
+
+.navbar {
+    text-align: center;
+    border-bottom: 1px solid #D4D4D4;
+    padding-bottom: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    background-color: #F2F0F0;
+    padding: 10px;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.navbar a.option-active {
+    background-color: #D4D4D4;
+}
+
+.container-activities {
+    overflow: auto;
+    max-height:50vh;
+}
+
+.activity {
+    margin-left: 5vh;
+    padding: 2vh;
+
+    display: flex;
+    align-items: center;
+}
+
+.activity-text {
+    margin-left: 2vh;
+}
+
+.activity-text .activity-title p {
+    font-size: 20px;
+    line-height: 30px;
+    color: #525252;
+}
+
+.activity-text .activity-title-checked p {
+    text-decoration: line-through;
+    color: #A4A4A4;
+}
+
+.activity-text .activity-description p {
+    font-size: 16px;
+    line-height: 26px;
+    color: #9C9C9C;
+}
+
+.activity-text .activity-description-checked p {
+    color: #D3D3D3;
+}
+
+.activity-img-uncheck {
+    cursor: pointer;
+}
+
+.activity-text .activity-label p.medio {
+    background-color: #F2C94C;
+    width: 60px;
+    text-align: center;
+}
+
+.activity-text .activity-label p.urgente {
+    background-color: #F26A4C;
+    width: 70px;
+    text-align: center;
+}
+
+.activity-text .activity-label p.baixo {
+    background-color: #63F24C;
+    width: 55px;
+    text-align: center;
+}
+
