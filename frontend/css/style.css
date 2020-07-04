@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --light-blue: #00A3D3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Roboto Slab', serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top-border {
+    width: 100%;
+    height: 25px;
+    background-color: var(--light-blue) ;
+}
+
+header {
+    display: flex;
+}
+
+.head-content {
+    padding: 3vh 0 0 6vh;
+    display: grid;
+    align-items: center;
+    grid-template-rows: 30% 30%;
+}
+
+.head-content .primary-title {
+    max-width: 70vh;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: bold;
+}
+
+.head-content .secondary-title {
+    max-width: 70vh;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 300;
+}
+
+.logo {
+    padding: 3vh;
+}
+
+.add-ship {
+    display: grid;
+    justify-content: right;
+    padding-right: 25px;
+}
+
+.ship-cards {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+.ship-card {
+    background: rgb(0,28,67);
+    background: linear-gradient(180deg, rgba(0,28,67,1) 0%, rgba(3,70,89,1) 100%); 
+    border-radius: 15px;
+    box-shadow: 0px 10px 10px -7px rgba(0,0,0,0.50);
+    
+
+    width: 310px;
+    height: 90px;
+
+    margin: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+
+.ship-card:hover {
+    border: 2px solid #63F24C;
+    transition: all 400ms;
+}
+
+.ship-card-content {
+    width: 280px;
+    margin-left: 10px;
+}
+
+.ship-card-title p {
+    color: var(--light-blue);
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.default-text, .green-text {
+    font-family: 'Blinker', sans-serif;
+    color: white;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 300;
+}
+
+.green-text {
+    color: #63F24C;
+}
+
+.ship-card-details {
+    margin-right: 10px;
+}
+
+footer {
+    width: 100%;
+    height: 60px;
+    background-color: var(--light-blue) ;
+}
