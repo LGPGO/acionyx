@@ -1,0 +1,9 @@
+{
+    // "python.pythonPath": "C:/Users/familia/Desktop/TI/projetos/acionyx-env/Scripts/python.exe",
+    "python.pythonPath": "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx-env\\Scripts\\python.exe",
+    // "python.pythonPath": "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx-env\\Scripts\\python.exe",
+    // "python.autoComplete.extraPaths": ["${workspaceFolder}\\backend"]
+    "python.autoComplete.extraPaths": [
+        "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx\\backend",
+        "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx\\frontend"]
+}
