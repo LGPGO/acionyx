@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/activity.css">
+    <title>KT</title>
+</head>
+<body>
+    <div class="content">
+        <div class="top-border">
+
+        </div>
+
+        <header>
+            <div class="head-content">
+                <p class="primary-title">Olá João</p>
+                <p class="secondary-title">Confira e adicione aqui as atividades.</p>
+            </div>
+            <span class="send-data">
+                <!-- id = Column(Integer, primary_key = True)
+                nome = Column(String(20))
+                descricao = Column(String(100))
+                status = Column(Boolean)
+                id_embarcacao = Column(Integer, ForeignKey('embarcacoes.id'))
+                id_audio = Column(Integer, ForeignKey('audios.id'))
+                id_arquivo = Column(Integer, ForeignKey('arquivos.id'))
+                id_categoria = Column(Integer, ForeignKey('categorias.id'))
+                tipo_arquivo = Column(String(3))
+                # Relacionamentos
+                arquivo = relationship("Arquivos")
+                categoria = relationship("Categorias")
+                embarcacao = relationship("Embarcacoes")
+                audio = relationship("Audios") -->
+                
+                <p class="description-data">
+                    {{ atividades[0].embarcacao.nome }}
+                </p>
+                <p class="submit-data">Enviar dados</p>
+            </span>
+        </header>
+
+        <div class="add-activity">
+            <a href="/add-activity"><img src="/img/button-add.svg" alt="Botão para adicionar"></a>
+        </div>
+
+        <div class="pages">
+
+            <div class="navbar">
+                <a href="/" class="option-active">Atividades</a>
+                <a href="/">Áudios</a>
+                <a href="/">Fotos</a>
+            </div>
+
+            
+            <!-- nome, descricao, status, idcategoria (atividades.categoria.nome) -->
+            
+                
+            
+            <div class="container-activities" id="container-activities">
+                {% for atividade in atividades %}
+                <div class="activity">
+
+                    {% if not atividade.status %}
+                    <div class="activity-img-uncheck">
+                        <img src="/img/unchecked.svg" alt="Botão Unchecked">
+                    </div>
+                    <div class="activity-text"> 
+                        <div class="activity-title">
+                            <p>{{ atividade.nome }}</p>
+                        </div>
+                        <div class="activity-description">
+                            <p>{{ atividade.descricao }}</p>
+                        </div>
+                        <div class="activity-label">
+                            <p class="{{ atividade.categoria.nome }}">{{ atividade.categoria.nome }}</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="activity-img-check">
+                        <img src="/img/checked.svg" alt="Botão Checked">
+                    </div>
+                    <div class="activity-text activity-title-checked"> 
+                        <div class="activity-title activity-title-checked">
+                            <p>{{ atividade.nome }}</p>
+                        </div>
+                        <div class="activity-description activity-description-checked">
+                            <p>{{ atividade.descricao }}</p>
+                        </div>
+                        <div class="activity-label">
+                            <p class="{{ atividade.categoria.nome }}">{{ atividade.categoria.nome }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>

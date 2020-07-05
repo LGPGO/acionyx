@@ -19,6 +19,10 @@ class Metodos():
   def delete(self):
     db_session.delete(self)
     db_session.commit()
+  
+  def finaliza(self):
+    db_session.commit()
+    db_session.close()
 
 class Embarcacoes(Base, Metodos):
   __tablename__ = 'embarcacoes'
@@ -36,7 +40,6 @@ class Arquivos(Base, Metodos):
   nome = Column(String)
   url = Column(String)
   tutorial = relationship('Tutoriais')
-
 
   # def __repr__(self):
   #   return "<Arquivos {}>".format(self.nome)
@@ -73,11 +76,6 @@ class Tutoriais(Base, Metodos):
   id_arquivo = Column(Integer, ForeignKey('arquivos.id'))
   id_categoria = Column(Integer, ForeignKey('categorias.id'))
   tipo_arquivo = Column(String(3))
-  # embarcacao_id = Column(Integer, ForeignKey('embarcacoes.id'))
-  # audio_id = Column(Integer, ForeignKey('audios.id'))
-  # arquivo_id = Column(Integer, ForeignKey('arquivos.id'))
-  # categoria_id = Column(Integer, ForeignKey('categorias.id'))
-
   # Relacionamentos
   arquivo = relationship("Arquivos")
   categoria = relationship("Categorias")

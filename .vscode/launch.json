@@ -6,7 +6,7 @@
     "configurations": [
         {
             // "name": "Python: Flask",
-            "name": "Python",
+            "name": "Python: Flask",
             "type": "python",
             "request": "launch",
             //para rodar como python
@@ -21,8 +21,8 @@
                  "FLASK_DEBUG": "1"
              },
             "args": [
-                // "run",
-                // "--no-debugger",
+                "run",
+                "--no-debugger",
                 // "--no-reload"
             ],
             "jinja": true

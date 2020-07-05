@@ -21,101 +21,60 @@
         </header>
 
         <div class="add-ship">
-            <img src="./img/button-add.svg" alt="Botão para adicionar">
+            <a href="/add-ship"><img src="./img/button-add.svg" alt="Botão para adicionar"></a>
         </div>
 
         <div class="ship-cards">
+            {% for embarcacao in lista %}
             <div class="ship-card">
                 <div class="ship-card-content">
                     <div class="ship-card-title">
-                        <p>Embarcação C</p>
-                    </div>                
-                    <div class="ship-issues">
-                        <p><div class="default-text">10 observações pendentes</div> <div class="green-text">2 resolvidas</div></p>
-                    </div>
-                </div>
-                <div class="ship-card-details">
-                    <img src="img/right-arrow.svg" alt="Ver detalhes">
-                </div>
-            </div>
-
-            <div class="ship-card inactive">
-                <div class="ship-card-content">
-                    <div class="ship-card-title">
-                        <p>Embarcação B</p>
-                    </div>                
-                    <div class="ship-issues">
-                        <div class="default-text">0 observações pendentes</div> 
-                        <div class="green-text">12 resolvidas</div>
-                    </div>
-                </div>
-                <div class="ship-card-details">
-                    <img src="img/right-arrow.svg" alt="Ver detalhes">
-                </div>
-            </div>
-
-            <div class="ship-card inactive">
-                <div class="ship-card-content">
-                    <div class="ship-card-title">
-                        <p>Embarcação A</p>
+                        <p>{{ embarcacao.nome }}</p>
                     </div>                
                     <div class="ship-issues">
                         <p><div class="default-text">0 observações pendentes</div> <div class="green-text">15 resolvidas</div></p>
                     </div>
                 </div>
                 <div class="ship-card-details">
-                    <img src="img/right-arrow.svg" alt="Ver detalhes">
+                    <a href={{ embarcacao.nome}}><img src="img/right-arrow.svg" alt="Ver detalhes"></a>
                 </div>
             </div>
+            {% endfor %}
         </div>
-
         <footer>
 
         </footer>
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <p>Teste do Sky:</p>
-    {% block teste %}
-    {% for teste in testes %}
-        <!-- <a href="/activity">link de teste {{ teste }}</a> -->
-        {{ teste.nome }}
-    {% endfor %}
-    {% endblock %}
-
     <script>
-        const shipCard = document.querySelector('.ship-cards');
+        // const shipCard = document.querySelector('.ship-cards');
 
-        function pegaEmbarcacoes() {
-            fetch('/embarcacoes')
-                .then(res => res.json())
-                .then(embarcacoes => {
-                    for (let embarcacao of embarcacoes) {
-                        shipCard.innerHTML += `
-                        <div class="ship-card">
-                        <div class="ship-card-content">
-                            <div class="ship-card-title">
-                                <p>${embarcacao.nome}</p>
-                            </div>                
-                            <div class="ship-issues">
-                                <div class="default-text">0 observações pendentes</div> 
-                                <div class="green-text">12 resolvidas</div>
-                            </div>
-                        </div>
-                        <div class="ship-card-details">
-                                <a href="/${embarcacao.nome}"><img src="img/right-arrow.svg" alt="Ver detalhes"></a>
-                        </div>
-                        </div>
-                        `
-                    }
-                })
-        }
+        // function pegaEmbarcacoes() {
+        //     fetch('/embarcacoes')
+        //         .then(res => res.json())
+        //         .then(embarcacoes => {
+        //             for (let embarcacao of embarcacoes) {
+        //                 shipCard.innerHTML += `
+        //                 <div class="ship-card">
+        //                 <div class="ship-card-content">
+        //                     <div class="ship-card-title">
+        //                         <p>${embarcacao.nome}</p>
+        //                     </div>                
+        //                     <div class="ship-issues">
+        //                         <div class="default-text">0 observações pendentes</div> 
+        //                         <div class="green-text">12 resolvidas</div>
+        //                     </div>
+        //                 </div>
+        //                 <div class="ship-card-details">
+        //                         <a href="/${embarcacao.nome}"><img src="img/right-arrow.svg" alt="Ver detalhes"></a>
+        //                 </div>
+        //                 </div>
+        //                 `
+        //             }
+        //         })
+        // }
 
-        pegaEmbarcacoes();
+        // pegaEmbarcacoes();
     </script>
 </body>
 </html>

@@ -10,52 +10,29 @@ def insereEmbarcacao(nome='Teste'):
 #  associated with a ForeignKey or ForeignKeyConstraint, or specify 'primaryjoin' and 'secondaryjoin' expressions.
 
 def consultaEmbarcacao():
-  embarcacao = Embarcacoes.query.all()
-  print(embarcacao)
+  return Embarcacoes.query.all()
 
 def insereArquivo(nome='Teste', url='http://teste.com.br'):
   arquivo = Arquivos(nome=nome, url=url)
   arquivo.save()
 
 def consultaArquivo():
-  arquivo = Arquivos.query.all()
-  print(arquivo)
+  return Arquivos.query.all()
 
 def insereCategoria(nome='categoriaaa'):
   categoria = Categorias(nome=nome)
   categoria.save()
 
 def consultaCategoria():
-  categoria = Categorias.query.all()
-  print(categoria)
+  return Categorias.query.all()
 
 def insereAudio(nome='audioooo', url='http://teste.com.br'):
   audio = Audios(nome=nome)
   audio.save()
 
 def consultaAudio():
-  audio = Audios.query.all()
-  print(audio)
+  return Audios.query.all()
 
-
-# class Tutoriais(Base, Metodos):
-#   __tablename__ = 'tutoriais'
-
-#   id = Column(Integer, primary_key = True)
-#   nome = Column(String(20))
-#   descricao = Column(String(100))
-#   status = Column(Boolean)
-#   id_embarcacao = Column(Integer, ForeignKey('embarcacoes.id'))
-#   id_audio = Column(Integer, ForeignKey('audios.id'))
-#   id_arquivo = Column(Integer, ForeignKey('arquivos.id'))
-#   tipo_arquivo = Column(String(3))
-#   id_categoria = Column(Integer, ForeignKey('categorias.id'))
-
-#   # Relacionamentos
-#   arquivos = relationship("Arquivos")
-#   categorias = relationship("Categorias")
-#   embarcacoes = relationship("Embarcacoes")
-#   audios = relationship("Audios")
 def insereTutorial(nome='tutorialll', descricao='sei lá ...', status=0, id_embarcacao=1, 
 id_audio=1, id_arquivo=1, tipo_arquivo='png', id_categoria=1):
 
@@ -64,10 +41,19 @@ id_audio=1, id_arquivo=1, tipo_arquivo='png', id_categoria=1):
   
   tutorial.save()
 
-def consultaTutorial():
-  tutorial = Tutoriais.query.all()
-  print(tutorial)
+# altera um tutorial pelo id
+def alteraTutorial(id=1, nome='nome de alteração', descricao='algo ...', status=1, tipo_arquivo='jpeg'):
+  tutorial = Tutoriais.query.filter_by(id=id).first()
+  tutorial.nome = nome
+  tutorial.descricao = descricao
+  tutorial.status = status
+  tutorial.save()
 
+def consultaTutoriais():
+  return Tutoriais.query.all()
+
+def consultaTutorialPorIdEmbarcacao(id):
+  return Tutoriais.query.filter_by(id_embarcacao=id)
 
 if __name__ == "__main__":
 #   insereEmbarcacao(nome='barquinhoooo')
@@ -82,4 +68,5 @@ if __name__ == "__main__":
   # consultaArquivo()
   # consultaAudio()
   # consultaCategoria()
-  consultaTutorial()
+  # consultaTutorial()
+  pass
