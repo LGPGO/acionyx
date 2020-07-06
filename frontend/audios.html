@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/activity.css">
+    <title>KT</title>
+</head>
+<body>
+    <div class="content">
+        <div class="top-border">
+
+        </div>
+
+        <header>
+            <div class="head-content">
+                <p class="primary-title">Olá João</p>
+                <p class="secondary-title">Confira e adicione aqui áudios.</p>
+            </div>
+            <span class="send-data">
+                
+                <p class="description-data">
+                    {{ atividades[0].embarcacao.nome }}
+                </p>
+                <p class="submit-data">Enviar dados</p>
+            </span>
+        </header>
+
+        <div class="add-activity">
+            <a href="{{ atividades[0].embarcacao.id }}/add-audios"><img src="/img/button-add.svg" alt="Botão para adicionar"></a>
+        </div>
+
+        <div class="pages">
+            
+            <div class="navbar">
+                <a href="">Atividades</a>
+                <a href="audios" class="option-active">Áudios</a>
+                <a href="/">Fotos</a>
+            </div>
+
+            
+            <!-- nome, descricao, status, idcategoria (atividades.categoria.nome) -->
+            
+                
+            
+            <div class="container-activities" id="container-activities">
+                {% for atividade in atividades %}
+                <div class="activity">
+                    <div class="activity-text"> 
+                        <div class="activity-title">
+                            <p>{{ atividade.audio.nome }}</p>
+                            <audio controls>
+                                <source src="{{ atividade.audio.url }}" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>

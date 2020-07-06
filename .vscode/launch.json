@@ -10,20 +10,19 @@
             "type": "python",
             "request": "launch",
             //para rodar como python
-            // "program": "${file}",
-            // "module": "${file}.py",
+            "program": "${file}",
             //para rodar como flask
-             "module": "flask",
-             "env": {
-                  "FLASK_APP": "backend/app.py",
-                //  "FLASK_APP": "${file}",
-                 "FLASK_ENV": "development",
-                 "FLASK_DEBUG": "1"
-             },
+            //  "module": "flask",
+            //  "env": {
+            //       "FLASK_APP": "backend/app.py",
+            //     //  "FLASK_APP": "${file}",
+            //      "FLASK_ENV": "development",
+            //      "FLASK_DEBUG": "1"
+            //  },
             "args": [
-                "run",
-                "--no-debugger",
-                // "--no-reload"
+                "run"
+                ,"--no-debugger"
+                // ,"--no-reload"
             ],
             "jinja": true
         }

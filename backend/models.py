@@ -1,10 +1,15 @@
 from sqlalchemy import create_engine, Boolean, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
-engine = create_engine('sqlite:///backend/database.db', convert_unicode=True)
+# esta classe é chamada pelo flask run
+# print('\n\nteste6\n\n')
+
+# cria o banco no diretório do app.py
+stringDaEngine = 'sqlite:///' + os.path.join(os.path.dirname(__file__),'database.db')
+engine = create_engine(stringDaEngine, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit = False, bind = engine))
-
 Base = declarative_base()
 Base.query = db_session.query_property()
 
@@ -51,6 +56,7 @@ class Categorias(Base, Metodos):
 
   id = Column(Integer, primary_key = True)
   nome = Column(String)
+  status = Column(Boolean)
   tutorial = relationship('Tutoriais')
 
   # def __repr__(self):
@@ -61,6 +67,7 @@ class Audios(Base, Metodos):
 
   id = Column(Integer, primary_key = True)
   nome = Column(String(50))
+  # id_embarcacao = Column(Integer)
   url = Column(String)
   tutorial = relationship('Tutoriais')
 
@@ -71,11 +78,12 @@ class Tutoriais(Base, Metodos):
   nome = Column(String(20))
   descricao = Column(String(100))
   status = Column(Boolean)
+  status_categoria = Column(Integer)
   id_embarcacao = Column(Integer, ForeignKey('embarcacoes.id'))
   id_audio = Column(Integer, ForeignKey('audios.id'))
   id_arquivo = Column(Integer, ForeignKey('arquivos.id'))
   id_categoria = Column(Integer, ForeignKey('categorias.id'))
-  tipo_arquivo = Column(String(3))
+  tipo_arquivo = Column(String(4))
   # Relacionamentos
   arquivo = relationship("Arquivos")
   categoria = relationship("Categorias")

@@ -1,9 +1,14 @@
 {
     // "python.pythonPath": "C:/Users/familia/Desktop/TI/projetos/acionyx-env/Scripts/python.exe",
-    "python.pythonPath": "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx-env\\Scripts\\python.exe",
     // "python.pythonPath": "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx-env\\Scripts\\python.exe",
     // "python.autoComplete.extraPaths": ["${workspaceFolder}\\backend"]
+
+    "python.pythonPath": "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx-env\\Scripts\\python.exe",
     "python.autoComplete.extraPaths": [
         "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx\\backend",
         "C:\\Users\\familia\\Desktop\\TI\\projetos\\acionyx\\frontend"]
-}
+
+        // "python.pythonPath": "c:\\Users\\familia\\Desktop\\TI\\Python\\VS Code - Flask Env\\Scripts\\python.exe",
+        // "python.terminal.activateEnvInCurrentTerminal": true
+    
+    }

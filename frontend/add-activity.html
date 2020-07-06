@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="stylesheet" href="css/ship.css">
+    <link rel="stylesheet" href="/css/ship.css">
     <title>KT</title>
 </head>
 <body>
@@ -20,18 +20,24 @@
                     <p class="primary-title">Olá João</p>
                     <p class="secondary-title">Adicione uma nova atividade.</p>
                 </div>
-                <span class="logo"><img src="img/logo.svg" alt="Logo KT: Um navio embarcador e duas ondas do mar"></span>
+                <span class="logo"><img src="/img/logo.svg" alt="Logo KT: Um navio embarcador e duas ondas do mar"></span>
             </header>
 
             <div class="wrapper">
                 <h1>Adicionar atividade:</h1>
-                <form action="/" method="POST">
+                <form action="/tutoriais" method="POST">
                     <label for="nome">Nome da atividade</label>
                     <input type="text" id="nome" name="nome" required>
                     <label for="descricao">Descrição da atividade</label>
+                    <input type="hidden" name="id_embarcacao" value="{{ embarcacao.id }}">
                     <input type="text" id="descricao" name="descricao" required>
                     <label for="nome">Categoria da atividade</label>
-                    <input type="text" id="categoria" name="categoria" required>
+                    <select name="id_categoria" id="categoria" required>
+                        <option value="">Selecione uma Categoria</option>
+                        {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                        {% endfor %}
+                    </select>
                     <button type="submit">Adicionar</button>
                     <button onclick="history.back();" value="Voltar">Voltar</button>
                 </form>
@@ -41,6 +47,5 @@
 
         </footer>
     </div>
-
 </body>
 </html>

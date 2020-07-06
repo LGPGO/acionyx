@@ -1,13 +1,13 @@
-import os
+import os, sys
 from flask import Flask, redirect, render_template, render_template_string, send_from_directory
 from models import Arquivos, Audios, Categorias, Tutoriais, Embarcacoes, db_session
 from flask_restful import Resource, Api, request
 from utils import *
 
-pastaRaiz = os.path.abspath('')
-pastaTemplates = os.path.join(pastaRaiz,'frontend')
-pastaCSS = os.path.join(pastaTemplates, 'css')
-pastaIMG = os.path.join(pastaTemplates, 'img')
+pastaRaiz       = os.path.realpath(__file__ + '/../..') # caminho do diretório até o projeto acionyx
+pastaTemplates  = os.path.join(pastaRaiz,'frontend')
+pastaCSS        = os.path.join(pastaTemplates, 'css')
+pastaIMG        = os.path.join(pastaTemplates, 'img')
 
 app = Flask(__name__, 
 # static_url_path=pastaStaticTemplates ,
@@ -38,17 +38,13 @@ class Tutorial(Resource):
         ]
 
     def post(self):
-        dados = request.json
-
-        tutorial = Tutoriais(nome=dados['nome'], descricao=dados['descricao'],
-        status=dados['status'], id_embarcacao=dados['id_embarcacao'], id_audio=dados['id_audio'],
-        id_arquivo=dados['id_arquivo'], id_categoria=dados['id_categoria'], tipo_arquivo=dados['tipo_arquivo'])
+        dados = request.form
+        
+        tutorial = insereTutorial(nome=dados['nome'], descricao=dados['descricao'],
+        id_embarcacao=dados['id_embarcacao'], id_categoria=dados['id_categoria'])
         tutorial.save()
+        return redirect('/success')
 
-        return {
-            'nome': tutorial.nome,
-            'descricao': tutorial.descricao
-        }
 
     def put(self):
         dados = request.json
@@ -101,9 +97,7 @@ def send_img(path):
 def index():
     # app.send_static_file()
     funcaoInicial()
-
     lista = consultaEmbarcacao()
-    
     return render_template('index.html', lista=lista)
 
 @app.route('/add-ship', methods = ['GET'])
@@ -111,15 +105,29 @@ def addship():
     # funcaoInicial()
     return render_template('add-ship.html')
 
-@app.route('/add-activity', methods = ['GET'])
-def addactivity():
-    # funcaoInicial()
-    return render_template('add-activity.html')
+@app.route('/embarcacao/<int:id>/add-activity', methods = ['GET'])
+def addactivity(id):
+    embarcacao = Embarcacoes.query.filter_by(id=id).first()
+
+    if embarcacao:
+        categorias = Categorias.query.all()
+
+        return render_template('add-activity.html', categorias=categorias,
+        embarcacao=embarcacao)
 
 @app.route('/success', methods = ['GET'])
 def sucesso():
     # funcaoInicial()
     return render_template('success.html')
+
+@app.route('/embarcacao/<int:id>/audios', methods = ['GET'])
+def audio(id):
+    embarcacao = Embarcacoes.query.filter_by(id=id).first()
+    # funcaoInicial()
+    if embarcacao:
+        atividades = consultaTutorialPorIdEmbarcacao(id)
+    return render_template('audios.html', atividades=atividades, embarcacao=embarcacao)
+
 
 @app.route('/embarcacao/<int:id>', methods = ['GET'])
 def show_embarcacao(id):
@@ -127,22 +135,41 @@ def show_embarcacao(id):
 
     return render_template('embarcacao.html', atividades=atividades)
 
+@app.route('/embarcacao/<int:id>/atividade/<int:id2>', methods = ['GET'])
+def show_atividade(id, id2):
+    atividade = Tutoriais.query.filter_by(id=id2).first()
 
-# @app.route('/<path:path>', methods = ['GET'])
-# def qualquerCaminho(path):  
-#     # embarcacoes = Embarcacoes.query.all()
-#     # print(embarcacoes)
-#     # funcaoInicial()
-#     print(path)
-#     return render_template(path+'.html', 
-#     # testes = embarcacoes
-#     )     
-#     # embarcacoes=Embarcacao()
-    
+    return render_template('atividade.html', atividade=atividade)
+
+# @app.route('/padrao', methods = ['GET'])
+# def padrao():
+#     return render_template('padrao.html')
+
+@app.route('/teste', methods = ['GET'])
+def teste():
+    return render_template('teste.html')
+
+# @app.route('/delete/<int:idEmbarcacao>', methods= ['GET'])
+# def delete(idEmbarcacao):
+#     print(pastaCSS)
+#     print(pastaIMG)
+#     return render_template('delete.html', id=idEmbarcacao)
+
+# @app.route('/delete_sucess', methods= ['GET'])
+# def deleteOk():
+#     return render_template('delete_success.html')
+
+
+# def qualquerRota(caminho):
+#     return render_template(caminho+'.html')
+
+@app.errorhandler(404)
+def paginaNaoEncontrada(error):
+    return render_template('página não encontrada.html'), 404
 
 api.add_resource(Embarcacao, '/embarcacoes')    
 api.add_resource(Tutorial, '/tutoriais')
+# app.add_url_rule('/<path:caminho>', view_func=qualquerRota)
 
 if __name__ == "__main__":
     app.run(debug=True)
-    # print(os.path.abspath(os.path.dirname(__file__)))

@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="ship-card-details">
-                    <a href={{ embarcacao.nome}}><img src="img/right-arrow.svg" alt="Ver detalhes"></a>
+                    <a href=/embarcacao/{{ embarcacao.id }}><img src="img/right-arrow.svg" alt="Ver detalhes"></a>
                 </div>
             </div>
             {% endfor %}
@@ -47,6 +47,16 @@
     </div>
 
     <script>
+        navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+          console.log('You let me use your mic!')
+        })
+        .catch(function(err) {
+          console.log('No mic for you!')
+        });
+      </script>
+    <script>
+        
         // const shipCard = document.querySelector('.ship-cards');
 
         // function pegaEmbarcacoes() {
